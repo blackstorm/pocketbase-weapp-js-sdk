@@ -280,35 +280,40 @@ export default class Client {
             }
         }
 
+        // integration wx request
+        const wxFetch = (url: String, options: SendOptions) => {
+            return new Promise<any>((resolve, reject) => {
+                wx.request({
+                    url: url,
+                    data: options.body,
+                    method: options.method,
+                    header: options.headers,
+                    enableHttp2: true,
+                    enableQuic: true,
+                    success: resolve,
+                    fail: reject
+                })
+            })
+        }
+
         // send the request
-        return fetch(url, options)
-            .then(async (response) => {
-                let data : any = {};
+        return wxFetch(url, options).then(async (response) => {
+            let data = JSON.parse(response.data);
 
-                try {
-                    data = await response.json();
-                } catch (_) {
-                    // all api responses are expected to return json
-                    // with the exception of the realtime event and 204
-                }
+            if (this.afterSend) data = await this.afterSend(response, data);
 
-                if (this.afterSend) {
-                    data = await this.afterSend(response, data);
-                }
-
-                if (response.status >= 400) {
-                    throw new ClientResponseError({
-                        url:      response.url,
-                        status:   response.status,
-                        data:     data,
-                    });
-                }
-
-                return data as T;
-            }).catch((err) => {
-                // wrap to normalize all errors
-                throw new ClientResponseError(err);
-            });
+            if (response.statusCode >= 400) {
+                throw new ClientResponseError({
+                    url:      response.url,
+                    status:   response.statusCode,
+                    data:     data,
+                });
+            }
+            
+            return data as T;
+        }).catch(err => {
+            throw new ClientResponseError(err);
+        })
     }
 
     /**
