@@ -78,8 +78,8 @@ export default class LocalAuthStore extends BaseAuthStore {
      * (or runtime/memory if local storage is undefined).
      */
     private _storageGet(key: string): any {
-        if (typeof window !== 'undefined' && window?.localStorage) {
-            const rawValue = window.localStorage.getItem(key) || '';
+        if (wx) {
+            const rawValue = wx.getStorageSync(key) || '';
             try {
                 return JSON.parse(rawValue);
             } catch (e) { // not a json
@@ -96,13 +96,13 @@ export default class LocalAuthStore extends BaseAuthStore {
      * (or runtime/memory if local storage is undefined).
      */
     private _storageSet(key: string, value: any) {
-        if (typeof window !== 'undefined' && window?.localStorage) {
+        if (wx) {
             // store in local storage
             let normalizedVal = value;
             if (typeof value !== 'string') {
                 normalizedVal = JSON.stringify(value);
             }
-            window.localStorage.setItem(key, normalizedVal);
+            wx.setStorageSync(key, normalizedVal);
         } else {
             // store in fallback
             this.storageFallback[key] = value;
@@ -114,8 +114,8 @@ export default class LocalAuthStore extends BaseAuthStore {
      */
     private _storageRemove(key: string) {
         // delete from local storage
-        if (typeof window !== 'undefined' && window?.localStorage) {
-            window.localStorage?.removeItem(key);
+        if (wx) {
+            wx.removeStorageSync(key);
         }
 
         // delete from fallback
