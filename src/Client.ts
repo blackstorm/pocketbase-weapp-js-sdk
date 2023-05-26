@@ -299,7 +299,7 @@ export default class Client {
         // send the request
         return wxFetch(url, options).then(async (response) => {
             console.log("then response", response)
-            let data = JSON.parse(response.data);
+            let data = response.data
             console.log("json parse data", data)
 
             if (this.afterSend) data = await this.afterSend(response, data);
