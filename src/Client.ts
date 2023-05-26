@@ -131,7 +131,7 @@ export default class Client {
 
     private cancelControllers: { [key: string]: AbortController } = {};
     private recordServices: { [key: string]: RecordService } = {};
-    private enableAutoCancellation: boolean = true;
+    private enableAutoCancellation: boolean = false;
 
     constructor(
         baseUrl = '/',
@@ -298,9 +298,12 @@ export default class Client {
 
         // send the request
         return wxFetch(url, options).then(async (response) => {
+            console.log("then response", response)
             let data = JSON.parse(response.data);
+            console.log("json parse data", data)
 
             if (this.afterSend) data = await this.afterSend(response, data);
+            console.log("afterSend  data", data)
 
             if (response.statusCode >= 400) {
                 throw new ClientResponseError({
@@ -309,6 +312,7 @@ export default class Client {
                     data:     data,
                 });
             }
+            console.log("check code data", data)
             
             return data as T;
         }).catch(err => {

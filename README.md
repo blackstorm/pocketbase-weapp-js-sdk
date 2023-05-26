@@ -17,6 +17,9 @@ Official JavaScript SDK (browser and node) for interacting with the [PocketBase 
 - [Definitions](#definitions)
 - [Development](#development)
 
+## Knew issues
+- Auto cancellation not work
+
 
 ## Installation
 
