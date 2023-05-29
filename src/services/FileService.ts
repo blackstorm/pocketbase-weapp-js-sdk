@@ -21,7 +21,7 @@ export default class FileService extends BaseService {
         let result = this.client.buildUrl(parts.join('/'));
 
         if (Object.keys(queryParams).length) {
-            const params = new URLSearchParams(queryParams);
+            const params = Object.entries(queryParams).map(([key, val]) => `${key}=${encodeURIComponent(val)}`).join('&');
             result += (result.includes("?") ? "&" : "?") + params;
         }
 
