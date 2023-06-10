@@ -47,6 +47,7 @@ import {
     FullListQueryParams,
     RecordFullListQueryParams,
 } from '@/services/utils/QueryParams';
+import CustomFormData from './FormData';
 
 export {
     ClientResponseError,
@@ -93,6 +94,8 @@ export {
     FileQueryParams,
     FullListQueryParams,
     RecordFullListQueryParams,
+
+    CustomFormData
 };
 
 export default Client;

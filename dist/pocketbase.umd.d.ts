@@ -1076,6 +1076,7 @@ declare class Client {
      * Loosely checks if the specified body is a FormData instance.
      */
     private isFormData;
+    private isCustomFormData;
     /**
      * Serializes the provided query parameters into a query string.
      */
