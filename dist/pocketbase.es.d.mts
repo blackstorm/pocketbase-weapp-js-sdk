@@ -1154,8 +1154,4 @@ declare class CustomFormData {
     private toUtf8Bytes;
     private utf8CodeAt;
 }
-declare module CustomFormDataWrapper {
-    export { CustomFormData };
-}
-import FormData = CustomFormDataWrapper.CustomFormData;
-export { Client as default, ClientResponseError, BaseAuthStore, LocalAuthStore, getTokenPayload, isTokenExpired, ExternalAuth, Admin, Collection, Record, LogRequest, BaseModel, ListResult, SchemaField, CrudService, AdminService, CollectionService, LogService, RealtimeService, RecordService, SettingsService, HealthCheckResponse, BackupFileInfo, SendOptions, BeforeSendResult, RecordAuthResponse, AuthProviderInfo, AuthMethodsList, RecordSubscription, OAuth2UrlCallback, OAuth2AuthConfig, OnStoreChangeFunc, UnsubscribeFunc, BaseQueryParams, ListQueryParams, RecordQueryParams, RecordListQueryParams, LogStatsQueryParams, FileQueryParams, FullListQueryParams, RecordFullListQueryParams, FormData };
+export { Client as default, ClientResponseError, BaseAuthStore, LocalAuthStore, getTokenPayload, isTokenExpired, ExternalAuth, Admin, Collection, Record, LogRequest, BaseModel, ListResult, SchemaField, CrudService, AdminService, CollectionService, LogService, RealtimeService, RecordService, SettingsService, HealthCheckResponse, BackupFileInfo, SendOptions, BeforeSendResult, RecordAuthResponse, AuthProviderInfo, AuthMethodsList, RecordSubscription, OAuth2UrlCallback, OAuth2AuthConfig, OnStoreChangeFunc, UnsubscribeFunc, BaseQueryParams, ListQueryParams, RecordQueryParams, RecordListQueryParams, LogStatsQueryParams, FileQueryParams, FullListQueryParams, RecordFullListQueryParams, CustomFormData };
