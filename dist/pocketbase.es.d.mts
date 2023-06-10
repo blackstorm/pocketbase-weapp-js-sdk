@@ -1150,6 +1150,7 @@ declare class CustomFormData {
     private convert;
     private randString;
     private getFileNameFromPath;
+    private getFileMime;
     private formDataArray;
     private toUtf8Bytes;
     private utf8CodeAt;
