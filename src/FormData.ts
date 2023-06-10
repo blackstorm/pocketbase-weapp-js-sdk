@@ -1,6 +1,6 @@
 import mime from 'mime-types'
 
-export default class FormData {
+export default class CustomFormData {
     private fileManager: any = wx.getFileSystemManager();
     private data: any = {}
     private files: any[] = []

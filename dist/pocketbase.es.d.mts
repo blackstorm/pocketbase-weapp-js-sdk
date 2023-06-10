@@ -1049,6 +1049,7 @@ declare class Client {
      * Loosely checks if the specified body is a FormData instance.
      */
     private isFormData;
+    private isCustomFormData;
     /**
      * Serializes the provided query parameters into a query string.
      */
@@ -1136,7 +1137,7 @@ declare function getTokenPayload(token: string): {
  * @param [expirationThreshold] Time in seconds that will be subtracted from the token `exp` property.
  */
 declare function isTokenExpired(token: string, expirationThreshold?: number): boolean;
-declare class FormData {
+declare class CustomFormData {
     private fileManager;
     private data;
     private files;
@@ -1153,4 +1154,8 @@ declare class FormData {
     private toUtf8Bytes;
     private utf8CodeAt;
 }
+declare module CustomFormDataWrapper {
+    export { CustomFormData };
+}
+import FormData = CustomFormDataWrapper.CustomFormData;
 export { Client as default, ClientResponseError, BaseAuthStore, LocalAuthStore, getTokenPayload, isTokenExpired, ExternalAuth, Admin, Collection, Record, LogRequest, BaseModel, ListResult, SchemaField, CrudService, AdminService, CollectionService, LogService, RealtimeService, RecordService, SettingsService, HealthCheckResponse, BackupFileInfo, SendOptions, BeforeSendResult, RecordAuthResponse, AuthProviderInfo, AuthMethodsList, RecordSubscription, OAuth2UrlCallback, OAuth2AuthConfig, OnStoreChangeFunc, UnsubscribeFunc, BaseQueryParams, ListQueryParams, RecordQueryParams, RecordListQueryParams, LogStatsQueryParams, FileQueryParams, FullListQueryParams, RecordFullListQueryParams, FormData };
